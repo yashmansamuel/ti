@@ -13,7 +13,6 @@ const userSearch=document.getElementById('userSearch');
 let users=JSON.parse(localStorage.getItem('users')||'[]');
 let currentUserName,currentUserID;
 
-// UNIQUE 5–7 DIGIT CODE
 function generateUniqueCode(){
     let code;
     do {
@@ -22,21 +21,17 @@ function generateUniqueCode(){
     return code;
 }
 
-// LOGIN USER BY NAME OR CODE
 function loginUser(){
   const nameInput = usernameInput.value.trim();
   const codeInput = userCodeInput.value.trim();
-
   let user;
 
   if(/^\d{5,7}$/.test(codeInput)){
     user = users.find(u => u.id==codeInput);
   }
-
   if(!user && nameInput){
     user = users.find(u => u.name.toLowerCase()===nameInput.toLowerCase());
   }
-
   if(!user){
     if(!nameInput && !codeInput){
       return alert("Please enter either a name or a code!");
@@ -50,7 +45,6 @@ function loginUser(){
 
   currentUserName = user.name;
   currentUserID = user.id;
-
   profileCircle.textContent = currentUserName;
   profileCode.textContent = `Code: ${currentUserID}`;
   loginBox.style.display = 'none';
@@ -58,7 +52,6 @@ function loginUser(){
   messages.innerHTML = '';
 }
 
-// ADD USER MANUALLY
 function addUser(){
   const name=userSearch.value.trim();
   if(!name) return;
@@ -68,7 +61,6 @@ function addUser(){
   userSearch.value='';
 }
 
-// SEARCH BY CODE ONLY
 function searchUserByCode(){
   const codeInput=userSearch.value.trim();
   chatList.innerHTML='';
@@ -98,17 +90,8 @@ function openChat(user){
 function sendMessage(){
   const text = messageInput.value.trim();
   if(!text) return;
-  
-  // Use currentUserName instead of 'You'
   addMessage(text, 'sent', currentUserName);
   saveMessage(currentChatID, text, 'sent', currentUserName);
-
-  setTimeout(() => {
-    const reply = text.split('').reverse().join(''); // sample reply
-    addMessage(reply, 'received', currentChatName || 'Neo');
-    saveMessage(currentChatID, reply, 'received', currentChatName || 'Neo');
-  }, 700);
-
   messageInput.value = '';
 }
 
