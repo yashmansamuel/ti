@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Neo TeleChat Login with Name & Code</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="login-box" id="loginBox">
+  <h2>Neo TeleChat Login</h2>
+  <input type="text" id="username" placeholder="Enter your name (optional)">
+  <input type="text" id="usercode" placeholder="Enter your code (optional)">
+  <button onclick="loginUser()">Login</button>
+</div>
+
+<div id="chatApp">
+  <div class="top-bar">
+    <div class="profile-container">
+      <div class="profile-circle" id="profileCircle"></div>
+      <div class="profile-code" id="profileCode"></div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="sidebar">
+      <h2>Neo TeleChat</h2>
+      <div class="search-box">
+        <input type="text" id="userSearch" placeholder="Enter user code..." onkeyup="searchUserByCode()" />
+        <button onclick="addUser()">+</button>
+      </div>
+      <div class="chat-list" id="chatList"></div>
+    </div>
+    <div class="chat-area">
+      <div class="chat-header" id="chatHeader">Chat Area</div>
+      <div class="messages" id="messages"></div>
+      <div class="input-area">
+        <input type="text" id="messageInput" placeholder="Type a message..." />
+        <button onclick="sendMessage()">Send</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
